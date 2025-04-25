@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>اخبار شخصی</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>اخبار دسته‌بندی‌شده</h1>
+    <p>آخرین به‌روزرسانی: {{ last_updated }}</p>
+    {% for topic, news_list in news_data.items() %}
+        <h2>{{ topic }}</h2>
+        {% if news_list %}
+            <ul>
+                {% for news in news_list %}
+                    <li>
+                        <a href="{{ news.link }}" target="_blank">{{ news.title }}</a><br>
+                        <small>منتشر شده: {{ news.published }}</small>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>هیچ خبری برای این موضوع پیدا نشد.</p>
+        {% endif %}
+    {% endfor %}
+</body>
+</html>
